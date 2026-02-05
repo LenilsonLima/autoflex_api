@@ -5,7 +5,7 @@ import { UpdateProductMaterialDto } from './dto/update-product-material.dto';
 
 @Injectable()
 export class ProductMaterialsService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   private toResponse(pm: any) {
     return {
@@ -17,20 +17,20 @@ export class ProductMaterialsService {
       // se vier include
       product: pm.product
         ? {
-            id: pm.product.id.toString(),
-            code: pm.product.code,
-            name: pm.product.name,
-            price: pm.product.price.toString(),
-          }
+          id: pm.product.id.toString(),
+          code: pm.product.code,
+          name: pm.product.name,
+          price: pm.product.price.toString(),
+        }
         : undefined,
 
       rawMaterial: pm.rawMaterial
         ? {
-            id: pm.rawMaterial.id.toString(),
-            code: pm.rawMaterial.code,
-            name: pm.rawMaterial.name,
-            stockQuantity: pm.rawMaterial.stockQuantity.toString(),
-          }
+          id: pm.rawMaterial.id.toString(),
+          code: pm.rawMaterial.code,
+          name: pm.rawMaterial.name,
+          stockQuantity: pm.rawMaterial.stockQuantity.toString(),
+        }
         : undefined,
     };
   }
@@ -94,11 +94,11 @@ export class ProductMaterialsService {
   async listByProduct(productId: bigint) {
     const list = await this.prisma.productRawMaterial.findMany({
       where: { productId },
-      include: { rawMaterial: true },
+      include: { product: true, rawMaterial: true },
       orderBy: { id: 'desc' },
     });
 
-    // aqui não vem product (só rawMaterial), mas o mapper lida
     return list.map((pm) => this.toResponse(pm));
   }
+
 }

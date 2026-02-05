@@ -5,7 +5,7 @@ import { UpdateProductMaterialDto } from './dto/update-product-material.dto';
 
 @Controller('product-materials')
 export class ProductMaterialsController {
-  constructor(private readonly productMaterialsService: ProductMaterialsService) {}
+  constructor(private readonly productMaterialsService: ProductMaterialsService) { }
 
   @Post()
   create(@Body() dto: CreateProductMaterialDto) {
@@ -17,6 +17,7 @@ export class ProductMaterialsController {
     if (productId) return this.productMaterialsService.listByProduct(BigInt(productId));
     return this.productMaterialsService.findAll();
   }
+
 
   @Get(':id')
   findOne(@Param('id') id: string) {
