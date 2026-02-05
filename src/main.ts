@@ -10,8 +10,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:3000',
       'http://localhost:5173',
-      // coloque aqui a URL do seu front em produção:
-      'https://SEU-FRONT.onrender.com',
+      'https://autoflex-front.onrender.com',
     ],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
